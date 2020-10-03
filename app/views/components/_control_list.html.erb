@@ -1,0 +1,13 @@
+<table>
+  <thead>
+    <tr>
+      <th colspan="6"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @controls.each do |control| %>
+      <%= render partial: 'components/control_list_item', locals: { control: control } %>
+    <% end %>
+  </tbody>
+</table>

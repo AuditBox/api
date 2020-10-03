@@ -1,0 +1,63 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.primary-nav {
+  @apply flex-1;
+}
+
+.primary-nav__items {
+  @apply flex flex-row justify-center;
+}
+
+.primary-nav__item {
+  @apply inline px-3;
+}
+
+.primary-nav__item_link {
+  @apply rounded block px-3 py-2 text-white;
+}
+
+.primary-nav__item_link:hover {
+  @apply bg-gray-800 text-white border-b border-purple-700 transition-all duration-500;
+}
+
+.primary-nav__item_link--active {
+  @apply bg-gray-800 text-white border-b border-purple-700 transition-all duration-500;
+}
+
+.btn-primary {
+  @apply text-white bg-purple-800 inline-block rounded px-3 py-2 shadow transition-colors duration-500;
+}
+
+.btn-primary:hover {
+  @apply bg-purple-700
+}
+
+a {
+  @apply text-purple-600 font-semibold;
+}
+
+
+.control-list-item {
+  @apply p-6 mb-6 flex flex-row;
+}
+
+.control-list-item:hover {
+  @apply rounded bg-gray-800 transition-colors duration-500;
+}
+
+.control-list-item__handle {
+  @apply uppercase text-sm text-purple-600 w-20 font-semibold mt-1 mr-6;
+}
+
+.control-list-item__main {}
+.control-list-item__name {
+  @apply text-xl text-white mb-2;
+}
+
+.control-list-item__description {
+  @apply text-gray-500;
+}

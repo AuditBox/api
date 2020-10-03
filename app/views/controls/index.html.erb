@@ -1,0 +1,10 @@
+<p id="notice"><%= notice %></p>
+
+<h1 class="text-white text-2xl m-6">Controls</h1>
+
+<%= render partial: 'components/control_list', locals: { controls: @controls } %>
+
+
+<br>
+
+<%= link_to 'New Control', new_control_path, class: 'btn-primary' %>

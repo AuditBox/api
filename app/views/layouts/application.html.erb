@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AuditboxApiBak</title>
+    <title>Auditbox</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -9,7 +9,9 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+  <body class="bg-gray-900 text-gray-100">
+    <%= render 'components/app_bar' %>
     <%= yield %>
   </body>
 </html>
+  

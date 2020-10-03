@@ -1,0 +1,20 @@
+<a href="<%= control_path control %>" class="control-list-item">
+  <div class="control-list-item__handle"><%= control.handle %></div>
+  <div class="control-list-item__main">
+    <div class="control-list-item__name"><%= control.name %></div>
+    <div class="control-list-item__description"><%= control.description %></div>
+  </div>
+
+  <div class="control-list-item__scope">
+    
+  </div>
+
+</a>
+<tr> 
+  <td><%= control.handle %></td>
+  <td><%= control.name %></td>
+  <td><%= control.description %></td>
+  <td><%= link_to 'Show', control %></td>
+  <td><%= link_to 'Edit', edit_control_path(control) %></td>
+  <td><%= link_to 'Destroy', control, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+</tr>
