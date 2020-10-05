@@ -40,24 +40,58 @@ a {
   @apply text-purple-600 font-semibold;
 }
 
+a:hover {
+  @apply text-purple-500 transition-colors duration-500;
+}
 
 .control-list-item {
-  @apply p-6 mb-6 flex flex-row;
+  @apply px-4 py-3 flex flex-row border-b border-gray-800;
 }
 
 .control-list-item:hover {
-  @apply rounded bg-gray-800 transition-colors duration-500;
+  @apply transition-colors duration-500;
+  background-color: rgba(255,255,255,0.05)
 }
 
 .control-list-item__handle {
-  @apply uppercase text-sm text-purple-600 w-20 font-semibold mt-1 mr-6;
+  @apply uppercase text-sm text-gray-600 w-20 font-semibold mt-1 mr-6;
 }
 
-.control-list-item__main {}
+.control-list-item__main {
+  width: 33%;
+}
 .control-list-item__name {
-  @apply text-xl text-white mb-2;
+  @apply text-white font-semibold;
 }
 
 .control-list-item__description {
-  @apply text-gray-500;
+  @apply text-gray-500 text-sm;
+}
+
+.control-list-item__actions {
+  @apply p-0 m-0 flex-1 text-right flex flex-row;
+}
+
+.control-list-item__actions_item {
+  @apply inline-block ml-4;
+}
+
+
+.control-list-item__scope {
+  width: 30%;
+}
+
+.page-header {
+  @apply flex flex-row p-6 border-b border-purple-600;
+}
+
+.page-header__title {
+  @apply flex-1;
+}
+.page-header__actions {
+ 
+}
+
+.tag {
+  @apply bg-gray-800 text-gray-500 font-semibold px-2 py-1 inline-block rounded;
 }

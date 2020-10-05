@@ -1,20 +1,23 @@
-<a href="<%= control_path control %>" class="control-list-item">
+<div href="<%= control_path control %>" class="control-list-item">
   <div class="control-list-item__handle"><%= control.handle %></div>
   <div class="control-list-item__main">
     <div class="control-list-item__name"><%= control.name %></div>
     <div class="control-list-item__description"><%= control.description %></div>
   </div>
 
+  
   <div class="control-list-item__scope">
-    
+    <% control.tags.each do |tag| %>
+      <div class="tag">
+        <%= tag.key %>:<%= tag.value %>
+      </div>
+    <% end %>
   </div>
+  
 
-</a>
-<tr> 
-  <td><%= control.handle %></td>
-  <td><%= control.name %></td>
-  <td><%= control.description %></td>
-  <td><%= link_to 'Show', control %></td>
-  <td><%= link_to 'Edit', edit_control_path(control) %></td>
-  <td><%= link_to 'Destroy', control, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-</tr>
+  <ul class="control-list-item__actions">
+    <li class="control-list-item__actions_item"><%= link_to 'View', control %></li>
+    <li class="control-list-item__actions_item"><%= link_to 'Edit', edit_control_path(control) %></li>
+    <li class="control-list-item__actions_item"><%= link_to 'Destroy', control, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+  </ul>
+</div>
