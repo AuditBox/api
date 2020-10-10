@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe "controls/edit", type: :view do
   before(:each) do
-    @control = assign(:control, Control.create!())
+    @control = assign(:control, Fabricate(:control))
   end
 
   it "renders the edit control form" do

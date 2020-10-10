@@ -21,68 +21,83 @@
 }
 
 .primary-nav__item_link:hover {
-  @apply bg-gray-800 text-white border-b border-purple-700 transition-all duration-500;
+  @apply bg-gray-800 text-white transition-all duration-500;
 }
 
 .primary-nav__item_link--active {
-  @apply bg-gray-800 text-white border-b border-purple-700 transition-all duration-500;
+  @apply bg-gray-800 text-white transition-all duration-500;
 }
 
 .btn-primary {
-  @apply text-white bg-purple-800 inline-block rounded px-3 py-2 shadow transition-colors duration-500;
+  @apply text-white bg-purple-800 inline-block rounded px-4 py-2 shadow transition-colors duration-500 cursor-pointer outline-none;
 }
 
 .btn-primary:hover {
   @apply bg-purple-700
 }
 
+.btn-ghost {
+  @apply px-4 py-2 inline-block transition-colors duration-500 cursor-pointer ;
+}
+
+.btn-ghost:hover {
+  @apply bg-gray-800 rounded;
+}
+
 a {
-  @apply text-purple-600 font-semibold;
+  @apply text-purple-500
 }
 
 a:hover {
-  @apply text-purple-500 transition-colors duration-500;
+  @apply text-purple-300 transition-colors duration-500;
 }
 
-.control-list-item {
-  @apply px-4 py-3 flex flex-row border-b border-gray-800;
+
+
+.resource-list-item {
+  @apply py-3 px-3 flex flex-row border-b;
+  border-color: rgba(255,255,255,0.07);
 }
 
-.control-list-item:hover {
+.resource-list-item:first-of-type {
+  @apply border-t;
+}
+
+.resource-list-item:hover {
   @apply transition-colors duration-500;
-  background-color: rgba(255,255,255,0.05)
+  background-color: rgba(255,255,255,0.02);
 }
 
-.control-list-item__handle {
+.resource-list-item__handle {
   @apply uppercase text-sm text-gray-600 w-20 font-semibold mt-1 mr-6;
 }
 
-.control-list-item__main {
+.resource-list-item__main {
   width: 33%;
 }
-.control-list-item__name {
+.resource-list-item__name {
   @apply text-white font-semibold;
 }
 
-.control-list-item__description {
+.resource-list-item__description {
   @apply text-gray-500 text-sm;
 }
 
-.control-list-item__actions {
-  @apply p-0 m-0 flex-1 text-right flex flex-row;
+.resource-list-item__actions {
+  @apply p-0 m-0 flex-1 text-right flex flex-row justify-end;
 }
 
-.control-list-item__actions_item {
+.resource-list-item__actions_item {
   @apply inline-block ml-4;
 }
 
 
-.control-list-item__scope {
-  width: 30%;
+.resource-list-item__scope {
+  @apply w-2/3 ml-4 items-center flex flex-row justify-end;
 }
 
 .page-header {
-  @apply flex flex-row p-6 border-b border-purple-600;
+  @apply flex flex-row border-purple-600 mb-12;
 }
 
 .page-header__title {
@@ -93,5 +108,121 @@ a:hover {
 }
 
 .tag {
-  @apply bg-gray-800 text-gray-500 font-semibold px-2 py-1 inline-block rounded;
+  @apply text-gray-500 inline-block rounded font-mono text-sm overflow-hidden mr-1;
+}
+
+.tag__key {
+  @apply px-2 border-r border-gray-700 inline-block rounded-tl rounded-bl;
+  background-color: rgba(255,255,255,0.05);
+}
+.tag__value {
+  @apply px-2 inline-block rounded-tr rounded-br;
+  background-color: rgba(255,255,255,0.10);
+}
+
+.form-group {}
+
+.form-group__actions {
+  @apply border-purple-900 border-t pt-6;
+}
+
+.form-group__action_item {
+  @apply inline-block mr-3;
+}
+
+.form-label-description {
+  @apply text-sm text-gray-600 mb-3;
+}
+
+
+
+.form-group__label {
+  @apply block mb-3 text-white font-semibold;;
+}
+
+.form-input {
+  @apply block w-full text-sm rounded border-2 border-purple-800 bg-gray-900 p-3 text-gray-400 transition-all duration-500;
+  background-color: rgba(255,255,255,0.05);
+}
+
+.form-input:focus {
+  @apply border-purple-400 text-white text-gray-300 outline-none;
+  background-color: rgba(255,255,255,0.08);
+}
+
+.page-form {
+  @apply w-1/2 mx-auto mt-12;
+}
+
+.page-form__intro {
+  @apply mb-6;
+}
+
+.stack-v {
+  @apply flex flex-col;
+}
+
+.stack-v > div {
+  @apply my-3;
+}
+
+
+
+
+p {
+  @apply my-3 text-gray-400;
+}
+
+
+.error-box {
+  @apply rounded p-6 bg-red-900 text-red-500;
+}
+.error-box__title {
+  @apply text-red-400;
+}
+
+.error-box__list {
+  @apply mt-3;
+}
+
+.error-box__list-item {}
+
+
+.success-box {
+  @apply rounded p-3 bg-green-900 text-green-500;
+}
+
+.success-box:empty {
+  @apply hidden;
+}
+
+.main {
+  max-width: 1200px;
+}
+ 
+
+
+
+
+.nav-list {
+
+}
+
+.nav-list__item {
+  @apply mt-3 -mx-2 p-2;
+}
+
+.nav-list__item-link {
+
+}
+
+.nav-list__item--active {
+  @apply rounded bg-purple-900 
+}
+.nav-list__item--active .nav-list__item-link {
+  @apply text-purple-300;
+}
+
+.nav-list__item--active .nav-list__item-link:hover {
+  @apply text-purple-200;
 }

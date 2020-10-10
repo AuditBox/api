@@ -1,5 +1,13 @@
-<h1>New Control</h1>
+<p id="notice" class="success-box"><%= notice %></p>
 
-<%= render 'form', control: @control %>
+<div class="page-form">
+  <div class="page-form__intro">
+    <h1 class="text-white text-2xl mt-12">Create a Control</h1>
+    <p>Controls represent the safeguards or security measures implemented by your organization.
+    Controls in Auditbox can map to the assets in your inventory making it easy to ensure you
+    have evidence in place for all assets governed by this control.</p> 
 
-<%= link_to 'Back', controls_path %>
+    <p>Learn more about <a href="https://docs.auditbox.dev">control scoping and evidence collection.</a></p>
+  </div>
+  <%= render 'form', control: @control %>
+</div>

@@ -1,30 +1,35 @@
 <%= form_with(model: control, local: true) do |form| %>
   <% if control.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(control.errors.count, "error") %> prohibited this control from being saved:</h2>
+    <div id="error_explanation" class="error-box">
+      <h2 class="error-box__title"><%= pluralize(control.errors.count, "error") %> prohibited this control from being saved:</h2>
 
-      <ul>
+      <ul class="error-box__list">
         <% control.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="error-box__list-item"><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= label_tag :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= label_tag :handle %>
-    <%= form.text_field :handle %>
-  </div>
-  <div>
-    <%= label_tag :description %>
-    <%= form.text_area :description %>
-  </div>
+  <div class="stack-v">
+    <div class="form-group">
+      <%= label_tag :name, 'Name', class: 'form-group__label' %>
+      <%= form.text_field :name, class: 'form-input' %>
+    </div>
 
-  <div class="actions">
-    <%= form.submit %>
+    <div>
+      <%= label_tag :handle, 'Handle', class: 'form-group__label' %>
+      <%= form.text_field :handle, class: 'form-input' %>
+    </div>
+
+    <div>
+      <%= label_tag :description, 'Description', class: 'form-group__label' %>
+      <%= form.text_area :description, class: 'form-input' %>
+    </div>
+
+    <div class="form-group__actions">
+      <%= form.submit class: 'btn-primary form-group__action_item' %>
+      <%= link_to 'Cancel', controls_path, class: 'btn-ghost form-group__action_item' %>    
+    </div>
   </div>
 <% end %>

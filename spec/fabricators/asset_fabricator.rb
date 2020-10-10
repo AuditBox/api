@@ -5,7 +5,8 @@
 #  id              :uuid             not null, primary key
 #  asset_type      :string
 #  handle          :string
-#  props           :json             not null
+#  props           :jsonb            not null
+#  tags            :jsonb            not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  organization_id :uuid             not null

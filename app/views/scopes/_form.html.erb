@@ -1,0 +1,75 @@
+<%= form_with(model: scope, local: true) do |form| %>
+  <% if scope.errors.any? %>
+    <div id="error_explanation" class="error-box">
+      <h2 class="error-box__title"><%= pluralize(scope.errors.count, "error") %> prohibited this scope from being saved:</h2>
+
+      <ul class="error-box__list">
+        <% scope.errors.full_messages.each do |message| %>
+          <li class="error-box__list-item"><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="stack-v">
+    <div class="form-group">
+      <%= label_tag :name, 'Name', class: 'form-group__label' %>
+      <%= form.text_field :name, class: 'form-input', placeholder: 'e.g. Production Databases under HIPAA' %>
+    </div>
+
+    <div class="form-group">
+      <label class="form-group__label">Asset tags</label>
+      <div class="stack-v">
+        <div class="flex flex-row -mx-2">
+          <div class="w-1/2">
+            <div class="px-2">
+              <%= label_tag :tag1_key, 'Tag 1 Key', class: 'form-group__label' %>
+              <%= form.text_field :tag1_key, class: 'form-input', placeholder: 'e.g. environment' %>
+            </div>
+          </div>
+          <div class="w-1/2">
+            <div class="px-2">
+              <%= label_tag :tag1_value, 'Tag 1 Value', class: 'form-group__label' %>
+              <%= form.text_field :tag1_value, class: 'form-input', placeholder: 'e.g. production' %>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-row -mx-2">
+          <div class="w-1/2">
+            <div class="px-2">
+              <%= label_tag :tag2_key, 'Tag 2 Key', class: 'form-group__label' %>
+              <%= form.text_field :tag2_key, class: 'form-input', placeholder: 'e.g. contains-phi' %>
+            </div>
+          </div>
+          <div class="w-1/2">
+            <div class="px-2">
+              <%= label_tag :tag1_value, 'Tag 2 Value', class: 'form-group__label' %>
+              <%= form.text_field :tag2_value, class: 'form-input', placeholder: 'e.g. true'%>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-row -mx-2">
+          <div class="w-1/2">
+            <div class="px-2">
+              <%= label_tag :tag1_key, 'Tag 3 Key', class: 'form-group__label' %>
+              <%= form.text_field :tag1_key, class: 'form-input' %>
+            </div>
+          </div>
+          <div class="w-1/2">
+            <div class="px-2">
+              <%= label_tag :tag1_value, 'Tag 3 Value', class: 'form-group__label' %>
+              <%= form.text_field :tag1_value, class: 'form-input' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group__actions">
+      <%= form.submit class: 'btn-primary form-group__action_item' %>
+      <%= link_to 'Cancel', assets_path, class: 'btn-ghost form-group__action_item' %>    
+    </div>
+  </div>
+<% end %>

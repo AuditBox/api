@@ -1,5 +1,11 @@
-<h1>New Asset</h1>
+<div class="page-form">
+  <div class="page-form__intro">
+    <h1 class="text-white text-2xl mt-12">Create an Asset</h1>
+    <p>Assets are the resources that comprising your organization
+    that are worth protecting. Assets can be anything from empoyees and roles to apps and databases.</p>
 
-<%= render 'form', asset: @asset %>
+    <p>Check out the Auditbox SDK documentation for bulk asset import examples</p>
+  </div> 
+  <%= render 'form', asset: @asset %>
+</div>
 
-<%= link_to 'Back', assets_path %>

@@ -21,7 +21,12 @@
 class Control < ApplicationRecord
   belongs_to :organization
   validates_presence_of :handle, :name, :organization
-  has_many :control_tags
-  has_many :tags, through: :control_tags
-  has_many :assets, through: :tags
+  has_many :control_scopes
+  has_many :scopes, through: :control_scopes
+
+  def assets
+    assets = []
+    scopes.each { |s| assets = assets + s.assets }
+    assets.uniq { |a| a.id }
+  end
 end

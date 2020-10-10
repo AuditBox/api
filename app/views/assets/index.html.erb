@@ -1,25 +1,44 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" class="success-box"><%= notice %></p>
 
-<h1>Assets</h1>
+<div class="page-header">
+  <div class="page-header__title">
+    <h1 class="text-white text-2xl">Assets</h1>
+  </div>
+  <div class="page-header__actions">  
+    <%= link_to 'New Asset', new_asset_path, class: 'btn-primary' %>
+  </div>
+</div>
 
-<table>
-  <thead>
-    <tr>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
 
-  <tbody>
-    <% @assets.each do |asset| %>
-      <tr>
-        <td><%= link_to 'Show', asset %></td>
-        <td><%= link_to 'Edit', edit_asset_path(asset) %></td>
-        <td><%= link_to 'Destroy', asset, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div class="flex mb-4">
+  <div class="w-1/4">
+    <div class="pr-8">
+      <h4 class="font-semibold mb-3">Asset Scopes</h4>
+      <ul class="nav-list">
+        <%
+          currentCn = "nav-list__item--active"
+        %>
+        <li class="nav-list__item <%= currentCn unless @scope%>">
+          <%= link_to 'All Assets', assets_path, class: 'nav-list__item-link' %>
+        </li>
+        <% @scopes.each do |scope| %>
+          <li class="nav-list__item <%= currentCn if (@scope && @scope == scope) %>">
+            <%= link_to scope.name, assets_path(scope: scope), class: 'nav-list__item-link' %>
+          </li>
+        <% end %>
 
-<br>
+        <li class="border-purple-800 border-t pt-3 mt-3">
+          <%= link_to 'New Scope', new_scope_path %>
+        </li>
+      </ul>
+    </div>
+  </div>
 
-<%= link_to 'New Asset', new_asset_path %>
+  <div class="w-3/4">
+    <h4 class="font-semibold mb-6">
+      <%= @scope ? @scope.name : 'All Assets' %> (<%= pluralize @assets.count, 'asset' %>)
+    </h4>
+    <%= render partial: 'components/asset_list', locals: { assets: @assets } %>
+  </div>
+</div>
+

@@ -1,0 +1,19 @@
+<p id="notice" class="success-box"><%= notice %></p>
+
+<div class="page-form">
+  <div class="page-form__intro">
+    <h1 class="text-white text-2xl mt-12">Create an Asset Scope</h1>
+    <p>Scopes help you divide your asset inventory into groupings that can
+    then be monitored by controls for evidence. For example, if you have an encyrption at-rest
+    control, you may wish to limit evidence collection to just the apps and
+    databases that store or process PHI.</p> 
+
+    <p>Note: assets are filtered using AND and not OR. If your scope matches on environment=staging and containsPHI=true then only
+    those assets that match both tags will be included in the scope.</p>
+
+    <p>Learn more about <a href="https://docs.auditbox.dev">scoping assets to controls.</a></p>
+  </div>
+  <%= render 'form', scope: @scope %>
+</div>
+
+

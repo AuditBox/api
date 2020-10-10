@@ -5,7 +5,8 @@
 #  id              :uuid             not null, primary key
 #  asset_type      :string
 #  handle          :string
-#  props           :json             not null
+#  props           :jsonb            not null
+#  tags            :jsonb            not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  organization_id :uuid             not null
@@ -21,6 +22,11 @@
 class Asset < ApplicationRecord
   belongs_to :organization
   validates_presence_of :handle, :asset_type, :organization
-  has_many :asset_tags
-  has_many :tags, through: :asset_tags
+
+  before_validation :serialize_hashes
+
+  def serialize_hashes
+    self.props = JSON.parse props if props.kind_of? String
+    self.tags = JSON.parse tags if tags.kind_of? String
+  end
 end

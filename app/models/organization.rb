@@ -12,4 +12,5 @@ class Organization < ApplicationRecord
   has_many :controls
   has_many :assets
   has_many :tags
+  has_many :scopes
 end

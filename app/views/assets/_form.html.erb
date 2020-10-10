@@ -1,17 +1,43 @@
 <%= form_with(model: asset, local: true) do |form| %>
   <% if asset.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
+    <div id="error_explanation" class="error-box">
+      <h2 class="error-box__title"><%= pluralize(asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
 
-      <ul>
+      <ul class="error-box__list">
         <% asset.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+          <li class="error-box__list-item"><%= message %></li>
         <% end %>
       </ul>
     </div>
   <% end %>
 
-  <div class="actions">
-    <%= form.submit %>
+  <div class="stack-v">
+    <div class="form-group">
+      <%= label_tag :handle, 'Handle', class: 'form-group__label' %>
+      <div class="form-label-description">Handles must be unique. Consider using the unique identify from this asset's source of truth (such ARN for AWS resources).</div>
+      <%= form.text_field :handle, class: 'form-input' %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :asset_type, 'Type', class: 'form-group__label' %>
+      <%= form.text_field :asset_type, class: 'form-input', placeholder: 'e.g. Database or 3rd Party Webservice' %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :props, 'Attributes', class: 'form-group__label' %>
+      <div class="form-label-description">Whatever you input here will be parsed as JSON.</div>
+      <%= form.text_area :props, class: 'form-input' %>
+    </div>
+
+    <div class="form-group">
+      <%= label_tag :tags, 'Tags', class: 'form-group__label' %>
+      <div class="form-label-description">Whatever you input here will be parsed as JSON.</div>
+      <%= form.text_area :tags, class: 'form-input' %>
+    </div>
+
+    <div class="form-group__actions">
+      <%= form.submit class: 'btn-primary form-group__action-item' %>
+      <%= link_to 'Cancel', assets_path, class: 'btn-ghost form-group__action_item' %>
+    </div>
   </div>
 <% end %>

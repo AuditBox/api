@@ -1,0 +1,5 @@
+<div class="resource-list">
+  <% @assets.each do |asset| %>
+    <%= render partial: 'components/asset_list_item', locals: { asset: asset } %>
+  <% end %>
+</div>

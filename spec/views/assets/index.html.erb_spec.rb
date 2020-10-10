@@ -1,10 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe "assets/index", type: :view do
+  let(:org) { Fabricate(:organization) }
   before(:each) do
+    assign(:scopes, [])
     assign(:assets, [
-      Asset.create!(),
-      Asset.create!()
+      Fabricate(:asset, organization: org),
+      Fabricate(:asset, organization: org)
     ])
   end
 

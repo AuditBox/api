@@ -1,0 +1,14 @@
+<a href="<%= asset_path(asset) %>" class="resource-list-item">
+  <div class="resource-list-item__main">
+    <div class="resource-list-item__name"><%= asset.handle %></div>
+  </div>
+
+  
+  <div class="resource-list-item__scope">
+    <% asset.tags.each do |key, value| %>
+      <div class="tag">
+        <span class="tag__key"><%= key %></span><span class="tag__value"><%= value %></span>
+      </div>
+    <% end %>
+  </div>
+</a>

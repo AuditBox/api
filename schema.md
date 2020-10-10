@@ -1,5 +1,5 @@
 sudo service postgresql start
-ngrok http -hostname=auditbox.ngrok.io 80
+./ngrok http -hostname=auditbox.ngrok.io 3000
 # User
 - Name
 - Email
@@ -17,7 +17,7 @@ ngrok http -hostname=auditbox.ngrok.io 80
 
 # Asset
 - Type
-- Identifier
+- Identifier           
 - Name
 - Description
 - attributes json
@@ -46,6 +46,16 @@ ngrok http -hostname=auditbox.ngrok.io 80
 - attributes json
 - description
 
+
+
+
+##### refactor
+
+* Create a new model, called a scope.  Within the scope is a list of "tags" that act as a json query.
+* Tags as a model are removed.  Instead we just represent arbitrary key value pairs directly on assets
+* controls don't associate to tags at all.  Instead they have and belong to many scopes.
+* Scopes narrow the list of assets.  Multiple scopes grow the list of assets.
+* Scopes have names
 
 
 #############

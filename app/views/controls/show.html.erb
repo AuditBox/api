@@ -1,4 +1,11 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>
+  <div class="mb-6">
+    <div class="success-box">
+      <%= notice %>
+    </div>
+  </div>
+<% end %>
+
 
 <h3><%= @control.handle %></h3>
 <h1><%= @control.name %></h1>
@@ -7,3 +14,4 @@
 
 <%= link_to 'Edit', edit_control_path(@control) %> |
 <%= link_to 'Back', controls_path %>
+<%= link_to 'Destroy', control, method: :delete, data: { confirm: 'Are you sure?' } %>

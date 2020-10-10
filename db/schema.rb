@@ -39,18 +39,10 @@ ActiveRecord::Schema.define(version: 2020_10_01_183612) do
     t.index ["organization_id"], name: "index_artifacts_on_organization_id"
   end
 
-  create_table "asset_tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "asset_id", null: false
-    t.uuid "tag_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["asset_id"], name: "index_asset_tags_on_asset_id"
-    t.index ["tag_id"], name: "index_asset_tags_on_tag_id"
-  end
-
   create_table "assets", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "organization_id", null: false
-    t.json "props", default: {}, null: false
+    t.jsonb "props", default: {}, null: false
+    t.jsonb "tags", default: {}, null: false
     t.string "asset_type"
     t.string "handle"
     t.datetime "created_at", precision: 6, null: false
@@ -58,13 +50,14 @@ ActiveRecord::Schema.define(version: 2020_10_01_183612) do
     t.index ["organization_id"], name: "index_assets_on_organization_id"
   end
 
-  create_table "control_tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "control_scopes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "control_id", null: false
-    t.uuid "tag_id", null: false
+    t.uuid "scope_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["control_id"], name: "index_control_tags_on_control_id"
-    t.index ["tag_id"], name: "index_control_tags_on_tag_id"
+    t.index ["control_id", "scope_id"], name: "index_control_scopes_on_control_id_and_scope_id", unique: true
+    t.index ["control_id"], name: "index_control_scopes_on_control_id"
+    t.index ["scope_id"], name: "index_control_scopes_on_scope_id"
   end
 
   create_table "controls", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -83,24 +76,23 @@ ActiveRecord::Schema.define(version: 2020_10_01_183612) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "tags", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "scopes", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.string "name", null: false
+    t.text "tags", default: [], array: true
     t.uuid "organization_id", null: false
-    t.string "key"
-    t.string "value"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["organization_id"], name: "index_tags_on_organization_id"
+    t.index ["name", "organization_id"], name: "index_scopes_on_name_and_organization_id", unique: true
+    t.index ["organization_id"], name: "index_scopes_on_organization_id"
   end
 
   add_foreign_key "access_keys", "organizations"
   add_foreign_key "artifacts", "assets"
   add_foreign_key "artifacts", "controls"
   add_foreign_key "artifacts", "organizations"
-  add_foreign_key "asset_tags", "assets"
-  add_foreign_key "asset_tags", "tags"
   add_foreign_key "assets", "organizations"
-  add_foreign_key "control_tags", "controls"
-  add_foreign_key "control_tags", "tags"
+  add_foreign_key "control_scopes", "controls"
+  add_foreign_key "control_scopes", "scopes"
   add_foreign_key "controls", "organizations"
-  add_foreign_key "tags", "organizations"
+  add_foreign_key "scopes", "organizations"
 end

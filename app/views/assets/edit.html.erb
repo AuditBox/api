@@ -1,6 +1,8 @@
-<h1>Editing Asset</h1>
+<div class="page-form">
+  <div class="page-form__intro">
+    <h1 class="text-white text-2xl mt-12">Edit <%= @asset.handle %></h1>
+    
+  </div>
+  <%= render 'form', asset: @asset %>
+</div>
 
-<%= render 'form', asset: @asset %>
-
-<%= link_to 'Show', @asset %> |
-<%= link_to 'Back', assets_path %>

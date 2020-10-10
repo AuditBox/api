@@ -5,7 +5,8 @@
 #  id              :uuid             not null, primary key
 #  asset_type      :string
 #  handle          :string
-#  props           :json             not null
+#  props           :jsonb            not null
+#  tags            :jsonb            not null
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  organization_id :uuid             not null
@@ -25,9 +26,6 @@ RSpec.describe Asset, type: :model do
 
   describe 'associations' do
     it { should belong_to :organization }
-    it { should have_many :asset_tags }
-    it { should have_many :tags }
-    it { should have_many :controls }
   end
 
   describe 'validations' do
