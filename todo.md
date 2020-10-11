@@ -43,6 +43,19 @@
 - [ ]
 
 
+# General Notes
+## Evidence expectations
+
+control
+iteration
+asset
+asset_iteration
+
+Each control should have a configured frequency: Monthly, Quarterly, Yearly. Create an occurance of each of these time intervals for 20 years into the future.
+
+As assets are scoped into the control, we should expect that evidnece be filled for each of this occurances for each asset. 
+
+I think we can force all controls to work this way, even the event-based monitors, such as "Code Reviews" where there is no expectation of generating evidence in premeditated intervals.
 
 
 - [ ]

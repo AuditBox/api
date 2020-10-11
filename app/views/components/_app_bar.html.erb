@@ -21,6 +21,15 @@
             Assets
           </a>
         </li>
+
+        <% if @current_user %>
+        <li class='primary-nav__item'>
+          <span class="primary-nav__item_link <%= asset_cn %>" href="/assets">
+            <%= @current_user.name %>
+          </span>
+        </li>
+        <% end %>
+
     </ul>
   </nav>
 </div>

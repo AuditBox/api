@@ -4,7 +4,7 @@ class CreateUser < ActiveRecord::Migration[6.0]
       t.string :google_id, null: false
       t.string :name
       t.string :email
-      t.belongs_to :organization, null: false, type: :uuid, foreign_key: true, index: true
+      t.belongs_to :organization, null: true, type: :uuid, foreign_key: true, index: true
       t.timestamps
     end
     add_index :users, [:google_id]

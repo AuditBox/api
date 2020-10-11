@@ -5,6 +5,7 @@ class ControlsController < ApplicationController
   # GET /controls.json
   def index
     @controls = @organization.controls.all
+    @current_user = current_user
   end
 
   # GET /controls/1
