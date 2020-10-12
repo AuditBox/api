@@ -1,8 +1,6 @@
 class ControlsController < AuthorizationController
-  before_action :set_control, only: [:show, :edit, :update, :destroy]
-  before_action :set_organization
-  # GET /controls
-  # GET /controls.json
+  before_action :set_control, only: %i[show edit update destroy]
+  before_action :set_organization # GET /controls.json
   def index
     @controls = @organization.controls.all
     @current_user = current_user
@@ -10,8 +8,7 @@ class ControlsController < AuthorizationController
 
   # GET /controls/1
   # GET /controls/1.json
-  def show
-  end
+  def show; end
 
   # GET /controls/new
   def new
@@ -19,8 +16,7 @@ class ControlsController < AuthorizationController
   end
 
   # GET /controls/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /controls
   # POST /controls.json
@@ -29,11 +25,15 @@ class ControlsController < AuthorizationController
     @control.organization = @organization
     respond_to do |format|
       if @control.save
-        format.html { redirect_to @control, notice: 'Control was successfully created.' }
+        format.html do
+          redirect_to @control, notice: 'Control was successfully created.'
+        end
         format.json { render :show, status: :created, location: @control }
       else
         format.html { render :new }
-        format.json { render json: @control.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @control.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -43,11 +43,15 @@ class ControlsController < AuthorizationController
   def update
     respond_to do |format|
       if @control.update(control_params)
-        format.html { redirect_to @control, notice: 'Control was successfully updated.' }
+        format.html do
+          redirect_to @control, notice: 'Control was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @control }
       else
         format.html { render :edit }
-        format.json { render json: @control.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @control.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -57,23 +61,24 @@ class ControlsController < AuthorizationController
   def destroy
     @control.destroy
     respond_to do |format|
-      format.html { redirect_to controls_url, notice: 'Control was successfully destroyed.' }
+      format.html do
+        redirect_to controls_url, notice: 'Control was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_control
-      @control = Control.find(params[:id])
-    end
+  private # Use callbacks to share common setup or constraints between actions.
+  def set_control
+    @control = Control.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def control_params
-      params.fetch(:control, {}).permit(:name, :handle, :description)
-    end
+  # Only allow a list of trusted parameters through.
+  def control_params
+    params.fetch(:control, {}).permit(:name, :handle, :description)
+  end
 
-    def set_organization
-      @organization = Organization.first
-    end
+  def set_organization
+    @organization = Organization.first
+  end
 end

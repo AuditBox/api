@@ -3,7 +3,12 @@ class AuthorizationController < ApplicationController
   before_action :require_organization
 
   def authorize
-    redirect_to(login_url, notice: 'You must be logged in to access this page!') unless current_user
+    unless current_user
+      redirect_to(
+        login_url,
+        notice: 'You must be logged in to access this page!'
+      )
+    end
   end
 
   def require_organization

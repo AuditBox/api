@@ -1,10 +1,7 @@
 class OrganizationsController < AuthorizationController
-  before_action :set_organization, only: [:show, :edit, :update, :destroy]
-  skip_before_action :require_organization, only: [:new, :create]
-  # GET /organizations/1
-  # GET /organizations/1.json
-  def show
-  end
+  before_action :set_organization, only: %i[show edit update destroy]
+  skip_before_action :require_organization, only: %i[new create] # GET /organizations/1.json
+  def show; end
 
   # GET /organizations/new
   def new
@@ -12,8 +9,7 @@ class OrganizationsController < AuthorizationController
   end
 
   # GET /organizations/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /organizations
   # POST /organizations.json
@@ -22,7 +18,7 @@ class OrganizationsController < AuthorizationController
 
     saved = false
 
-    Organization.transaction do 
+    Organization.transaction do
       @organization = Organization.new(organization_params)
       @current_user.organization = @organization
       org_saved = @organization.save!
@@ -32,11 +28,16 @@ class OrganizationsController < AuthorizationController
 
     respond_to do |format|
       if saved
-        format.html { redirect_to controls_url, notice: 'Organization was successfully created.' }
+        format.html do
+          redirect_to controls_url,
+                      notice: 'Organization was successfully created.'
+        end
         format.json { render :show, status: :created, location: @organization }
       else
         format.html { render :new }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @organization.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -46,11 +47,16 @@ class OrganizationsController < AuthorizationController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
-        format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
+        format.html do
+          redirect_to @organization,
+                      notice: 'Organization was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @organization }
       else
         format.html { render :edit }
-        format.json { render json: @organization.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @organization.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -60,19 +66,21 @@ class OrganizationsController < AuthorizationController
   def destroy
     @organization.destroy
     respond_to do |format|
-      format.html { redirect_to organizations_url, notice: 'Organization was successfully destroyed.' }
+      format.html do
+        redirect_to organizations_url,
+                    notice: 'Organization was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_organization
-      @organization = Organization.find(params[:id])
-    end
+  private # Use callbacks to share common setup or constraints between actions.
+  def set_organization
+    @organization = Organization.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def organization_params
-      params.fetch(:organization, {}).permit(:name)
-    end
+  # Only allow a list of trusted parameters through.
+  def organization_params
+    params.fetch(:organization, {}).permit(:name)
+  end
 end

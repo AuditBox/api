@@ -27,7 +27,7 @@ require 'rails_helper'
 
 RSpec.describe Artifact, type: :model do
   include_examples 'a fabricated model'
-  
+
   describe 'associations' do
     it { should belong_to :asset }
     it { should belong_to :control }

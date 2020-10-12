@@ -20,7 +20,7 @@
 #  fk_rails_...  (organization_id => organizations.id)
 #
 class User < ApplicationRecord
-  TYPES = %w(user owner)
+  TYPES = %w[user owner]
   belongs_to :organization, optional: true
   validates_presence_of :google_id, :name, :email
 end

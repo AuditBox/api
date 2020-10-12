@@ -21,5 +21,5 @@
 Fabricator(:scope) do
   organization
   name 'Stores PHI'
-  tags { [['Environment','Production'],['Contains PHI', '1']] }  
+  tags { [%w[Environment Production], ['Contains PHI', '1']] }
 end

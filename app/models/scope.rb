@@ -22,16 +22,17 @@ class Scope < ApplicationRecord
   belongs_to :organization
   validates_presence_of :name, :organization
   has_many :control_scopes
-  has_many :controls, through: :control_scopes 
+  has_many :controls, through: :control_scopes
 
   def assets
     return [] if tags.empty?
-    query = organization.assets
-    #tags = [['environment', 'production'], ['containsPHI', true]]
+    query = organization.assets #tags = [['environment', 'production'], ['containsPHI', true]]
 
     tags.each do |tag|
       key, value = tag
-      query = query.where("tags ->> :key = :value", key: key.to_s, value: value.to_s)
-    end ; query
+      query =
+        query.where('tags ->> :key = :value', key: key.to_s, value: value.to_s)
+    end
+    query
   end
 end

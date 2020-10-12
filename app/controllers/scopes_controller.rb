@@ -1,16 +1,13 @@
 class ScopesController < AuthorizationController
-  before_action :set_scope, only: [:show, :edit, :update, :destroy]
-  before_action :set_organization
-  # GET /scopes
-  # GET /scopes.json
+  before_action :set_scope, only: %i[show edit update destroy]
+  before_action :set_organization # GET /scopes.json
   def index
     @scopes = @organization.scopes.all
   end
 
   # GET /scopes/1
   # GET /scopes/1.json
-  def show
-  end
+  def show; end
 
   # GET /scopes/new
   def new
@@ -18,8 +15,7 @@ class ScopesController < AuthorizationController
   end
 
   # GET /scopes/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /scopes
   # POST /scopes.json
@@ -28,11 +24,15 @@ class ScopesController < AuthorizationController
     @scope.organization = @organization
     respond_to do |format|
       if @scope.save
-        format.html { redirect_to @scope, notice: 'Scope was successfully created.' }
+        format.html do
+          redirect_to @scope, notice: 'Scope was successfully created.'
+        end
         format.json { render :show, status: :created, location: @scope }
       else
         format.html { render :new }
-        format.json { render json: @scope.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @scope.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -42,11 +42,15 @@ class ScopesController < AuthorizationController
   def update
     respond_to do |format|
       if @scope.update(scope_params)
-        format.html { redirect_to @scope, notice: 'Scope was successfully updated.' }
+        format.html do
+          redirect_to @scope, notice: 'Scope was successfully updated.'
+        end
         format.json { render :show, status: :ok, location: @scope }
       else
         format.html { render :edit }
-        format.json { render json: @scope.errors, status: :unprocessable_entity }
+        format.json do
+          render json: @scope.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -56,23 +60,24 @@ class ScopesController < AuthorizationController
   def destroy
     @scope.destroy
     respond_to do |format|
-      format.html { redirect_to assets_url, notice: 'Scope was successfully destroyed.' }
+      format.html do
+        redirect_to assets_url, notice: 'Scope was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end
 
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_scope
-      @scope = Scope.find(params[:id])
-    end
+  private # Use callbacks to share common setup or constraints between actions.
+  def set_scope
+    @scope = Scope.find(params[:id])
+  end
 
-    # Only allow a list of trusted parameters through.
-    def scope_params
-      params.fetch(:scope, {}).permit(:name, :handle, :description)
-    end
+  # Only allow a list of trusted parameters through.
+  def scope_params
+    params.fetch(:scope, {}).permit(:name, :handle, :description)
+  end
 
-    def set_organization
-      @organization = Organization.first
-    end
+  def set_organization
+    @organization = Organization.first
+  end
 end

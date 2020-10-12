@@ -36,21 +36,28 @@ RSpec.describe Scope, type: :model do
 
   describe '#assets' do
     let(:org) { Fabricate(:organization) }
-    let(:tags) { {containsPHI: "true", environment: "production"} }
+    let(:tags) { { containsPHI: 'true', environment: 'production' } }
     let(:subject) do
       Fabricate(
         :scope,
         organization: org,
-        tags: [["containsPHI", "true"], ["environment", "production"]])
+        tags: [%w[containsPHI true], %w[environment production]]
+      )
     end
-     
-    let!(:included_1) { Fabricate(:asset, handle: 'included1', organization: org, tags: tags) }
-    let!(:included_2) { Fabricate(:asset, handle: 'included2', organization: org, tags: tags) }
-    let!(:excluded) { Fabricate(:asset, handle: 'excluded', organization: org, tags: {}) }
+
+    let!(:included_1) do
+      Fabricate(:asset, handle: 'included1', organization: org, tags: tags)
+    end
+    let!(:included_2) do
+      Fabricate(:asset, handle: 'included2', organization: org, tags: tags)
+    end
+    let!(:excluded) do
+      Fabricate(:asset, handle: 'excluded', organization: org, tags: {})
+    end
 
     it 'should only include assets with matchig tags' do
       expect(org.assets.count).to eq 3
-      expect(subject.assets.map(&:handle)).to eq ['included1', 'included2']
+      expect(subject.assets.map(&:handle)).to eq %w[included1 included2]
     end
   end
 end

@@ -27,6 +27,6 @@ class Control < ApplicationRecord
   def assets
     assets = []
     scopes.each { |s| assets = assets + s.assets }
-    assets.uniq { |a| a.id }
+    assets.uniq(&:id)
   end
 end

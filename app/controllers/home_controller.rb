@@ -1,4 +1,3 @@
 class HomeController < AuthorizationController
-  def index
-  end
+  def index; end
 end

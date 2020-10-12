@@ -21,6 +21,6 @@
 Fabricator(:access_key) do
   organization
   test false
-  write_key { |attrs| AccessKey::generate_wk(attrs[:test]) }
-  secret_key {|attrs| AccessKey::generate_sk(attrs[:test]) }
+  write_key { |attrs| AccessKey.generate_wk(attrs[:test]) }
+  secret_key { |attrs| AccessKey.generate_sk(attrs[:test]) }
 end

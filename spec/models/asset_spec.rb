@@ -33,5 +33,4 @@ RSpec.describe Asset, type: :model do
     it { should validate_presence_of :organization }
     it { should validate_presence_of :asset_type }
   end
-
 end

@@ -1,2 +1,1 @@
-module ControlsHelper
-end
+module ControlsHelper; end

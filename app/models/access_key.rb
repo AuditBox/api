@@ -24,12 +24,12 @@ class AccessKey < ApplicationRecord
   before_save :generate_keys
 
   def generate_keys
-    self.write_key ||= AccessKey::generate_wk(test)
-    self.secret_key ||= AccessKey::generate_sk(test)
+    self.write_key ||= AccessKey.generate_wk(test)
+    self.secret_key ||= AccessKey.generate_sk(test)
   end
 
   def self.generate_wk(test = true)
-    "wk_#{test ? 'test_': ''}#{SecureRandom.urlsafe_base64(32)}"
+    "wk_#{test ? 'test_' : ''}#{SecureRandom.urlsafe_base64(32)}"
   end
 
   def self.generate_sk(test = true)

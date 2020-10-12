@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :controls
   resources :assets
   resources :scopes
-  resources :organizations, only: [:new, :create, :show, :edit, :update]
+  resources :organizations, only: %i[new create show edit update]
   root 'home#index'
   get 'login', to: 'logins#new'
   get 'login/create', to: 'logins#create', as: :create_login

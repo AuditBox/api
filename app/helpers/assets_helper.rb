@@ -1,2 +1,1 @@
-module AssetsHelper
-end
+module AssetsHelper; end

@@ -1,2 +1,1 @@
-module OrganizationsHelper
-end
+module OrganizationsHelper; end
