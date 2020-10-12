@@ -1,9 +1,9 @@
 ## v0.0.1
 
 #### [ ] Auth
-- [ ] Basic Auth
-- [ ] Login
-- [ ] Signup
+- [x] Basic Auth
+- [x] Login
+- [x] Signup
 - [ ] User permissions
 - [ ] Invite
 
