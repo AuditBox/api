@@ -1,0 +1,28 @@
+<%
+  active_cn = 'primary-nav__item_link--active'
+  control_cn = current_page?(controller: 'controls') ? active_cn : nil
+  asset_cn = current_page?(controller: 'assets') ? active_cn : nil 
+%>
+
+<div class='flex flex-row m-6'>
+  <a href="/" class='block p-2 rounded flex-none bg-gray-800 text-center flex-grow-0'>
+    <%= render 'components/logo' %>
+  </a>
+  <nav class="primary-nav">
+    <ul class='primary-nav__items'>
+      <li class='primary-nav__item'>
+        <%= link_to 'Controls', controls_url, class: "primary-nav__item_link {#control_cn}" %>
+      </li>
+
+      <li class='primary-nav__item'>
+        <%= link_to 'Assets', assets_url, class: "primary-nav__item_link #{asset_cn}" %>
+      </li>
+
+      <li class='primary-nav__item'>
+        <span class="primary-nav__item_link <%= asset_cn %>">
+          <%= @current_user.name %> <%=link_to "Logout", logout_url %>
+        </span>
+      </li>
+    </ul>
+  </nav>
+</div>

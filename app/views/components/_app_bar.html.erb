@@ -1,35 +1,3 @@
- <div class='flex flex-row m-6'>
+<%= render('components/authenticated_app_bar') if @current_user %>
+<%= render('components/unauthenticated_app_bar') unless @current_user %>
 
-  <a href="/" class='block p-2 rounded flex-none bg-gray-800 text-center flex-grow-0'>
-    <%= render 'components/logo' %>
-  </a>
-  <%
-    active_cn = 'primary-nav__item_link--active'
-    control_cn = current_page?(controller: 'controls') ? active_cn : nil
-    asset_cn = current_page?(controller: 'assets') ? active_cn : nil 
-  %>
-  <nav class="primary-nav">
-    <ul class='primary-nav__items'>
-        <li class='primary-nav__item'>
-          <a class="primary-nav__item_link <%= control_cn %>" href="/controls">
-            Controls
-          </a>
-        </li>
-
-        <li class='primary-nav__item'>
-          <a class="primary-nav__item_link <%= asset_cn %>" href="/assets">
-            Assets
-          </a>
-        </li>
-
-        <% if @current_user %>
-        <li class='primary-nav__item'>
-          <span class="primary-nav__item_link <%= asset_cn %>" href="/assets">
-            <%= @current_user.name %>
-          </span>
-        </li>
-        <% end %>
-
-    </ul>
-  </nav>
-</div>

@@ -1,4 +1,4 @@
-class ControlsController < ApplicationController
+class ControlsController < AuthorizationController
   before_action :set_control, only: [:show, :edit, :update, :destroy]
   before_action :set_organization
   # GET /controls

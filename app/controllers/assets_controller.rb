@@ -1,4 +1,4 @@
-class AssetsController < ApplicationController
+class AssetsController < AuthorizationController
   before_action :set_asset, only: [:show, :edit, :update, :destroy]
   before_action :set_organization
   # GET /assets

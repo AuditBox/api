@@ -1,4 +1,4 @@
-class ScopesController < ApplicationController
+class ScopesController < AuthorizationController
   before_action :set_scope, only: [:show, :edit, :update, :destroy]
   before_action :set_organization
   # GET /scopes

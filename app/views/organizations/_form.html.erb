@@ -1,0 +1,24 @@
+<%= form_with(model: organization, local: true) do |form| %>
+  <% if organization.errors.any? %>
+    <div id="error_explanation" class="error-box">
+      <h2 class="error-box__title"><%= pluralize(organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+
+      <ul class="error-box__list">
+        <% organization.errors.full_messages.each do |message| %>
+          <li class="error-box__list-item"><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="stack-v">
+    <div class="form-group">
+      <%= label_tag :name, 'Your organization\'s name', class: 'form-group__label' %>
+      <%= form.text_field :name, class: 'form-input', placeholder: 'e.g. Acme Co' %>
+    </div>
+
+    <div class="form-group__actions">
+      <%= form.submit class: 'btn-primary form-group__action_item' %>
+    </div>
+  </div>
+<% end %>
