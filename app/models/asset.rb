@@ -22,11 +22,15 @@
 class Asset < ApplicationRecord
   belongs_to :organization
   validates_presence_of :handle, :asset_type, :organization
-
+  has_many :artifacts
   before_validation :serialize_hashes
 
   def serialize_hashes
     self.props = JSON.parse props if props.kind_of? String
     self.tags = JSON.parse tags if tags.kind_of? String
+  end
+
+  def artifacts_for_control(control)
+    artifacts.where(control: control)
   end
 end

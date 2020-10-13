@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :scopes
   resources :organizations, only: %i[new create show edit update]
   root 'home#index'
+  get 'box/c/:control_id/a/:asset_id', to: 'boxes#show', as: :box
   get 'login', to: 'logins#new'
   get 'login/create', to: 'logins#create', as: :create_login
   get 'logout', to: 'logouts#new'

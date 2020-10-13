@@ -23,6 +23,7 @@ class Control < ApplicationRecord
   validates_presence_of :handle, :name, :organization
   has_many :control_scopes
   has_many :scopes, through: :control_scopes
+  has_many :artifacts
 
   def assets
     assets = []

@@ -1,0 +1,35 @@
+<p id="notice" class="success-box"><%= notice %></p>
+
+
+<div class="page-header border-b-0">
+  <div class="page-header__title">
+    <%= link_to "← #{@control.name}", @control, class: 'text-sm text-purple-700 inline-block mb-3' %>
+    <h1 class="text-white text-2xl"><%= "Evidence Artifacts for #{@control.name}" %></h1>
+    <p class=""><%= "#{@asset.asset_type} - #{@asset.handle}" %></p>
+  </div>
+  <div class="page-header__actions">Log evidence</div>
+</div>
+
+
+ <div class="resource-list">
+  <% if @artifacts.any? %>
+    <% @artifacts.each do |artifact| %>
+      <div class="resource-list-item">
+        <div class="resource-list-item__main">
+          <div class="resource-list-item__name">
+            Evidence as of<%= asset.created_at %>
+          </div>
+          <div class="resource-list-item__name">
+            <%= asset.description %>
+          </div>
+        </div>
+        <div class="resource-list-item__scope text-right">
+          <a href="#" class="btn-primary">Preview</a>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    No "<%= @control.name %>" artifacts have been added for "<%= "#{@asset.asset_type} - #{@asset.handle}" %>" yet
+    <a href="#" class="btn-primary">Add an evidence artifact</a>
+  <% end %>
+</div>

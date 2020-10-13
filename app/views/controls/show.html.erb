@@ -1,17 +1,43 @@
-<% if notice %>
-  <div class="mb-6">
-    <div class="success-box">
-      <%= notice %>
-    </div>
+<p id="notice" class="success-box"><%= notice %></p>
+
+
+<div class="page-header border-b-0">
+  <div class="page-header__title">
+    <%= link_to '← Controls', controls_path, class: 'text-sm text-purple-700 inline-block mb-3' %>
+    <h1 class="text-white text-2xl"><%= "#{@control.handle} - #{@control.name}" %></h1>
+    <p class=""><%= @control.description %></p>
   </div>
+  <div class="page-header__actions">
+    <%= link_to 'Edit', edit_control_path(@control), class: 'btn-ghost' %>
+    <%= link_to 'Destroy', @control, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn-ghost' %>
+  </div>
+</div>
+
+
+<% @control.scopes.each do |scope| %>
+<div class="">
+  <h2 class="mb-4"><%= scope.name %></h2>
+  <div class="mb-4">
+    <%= pluralize(scope.assets.count, 'asset') %>: matching the tags <% scope.tags.each do |key, value| %>
+      <span class="tag__key"><%= key %></span><span class="tag__value"><%= value %></span>
+    <% end %>
+  </div>
+
+  <div class="resource-list">
+    
+    <% scope.assets.each do |asset| %>
+      <div class="resource-list-item">
+        <div class="resource-list-item__main">
+          <div class="resource-list-item__name">
+            <%= asset.handle %>
+          </div>
+        </div>
+        <div class="resource-list-item__scope text-right">
+          <% artifacts = asset.artifacts.where(control: @control) %> 
+          <%= link_to pluralize(artifacts.count, 'evidence artifact'), box_url(control_id: @control.id, asset_id: asset.id) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 <% end %>
-
-
-<h3><%= @control.handle %></h3>
-<h1><%= @control.name %></h1>
-
-<p><%= @control.description %>
-
-<%= link_to 'Edit', edit_control_path(@control) %> |
-<%= link_to 'Back', controls_path %>
-<%= link_to 'Destroy', control, method: :delete, data: { confirm: 'Are you sure?' } %>
